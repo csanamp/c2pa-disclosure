@@ -1,0 +1,39 @@
+{
+  "name": "c2pa-disclosure",
+  "version": "0.10.0",
+  "description": "Classify Amplience DAM assets by AI provenance using C2PA Content Credentials, and record the verdict as asset metadata for EU AI Act disclosure labelling.",
+  "license": "Apache-2.0",
+  "//engines": "Node 16 is the tested floor. @contentauth/c2pa-node declares >=22, but nothing in its runtime path needs it: the native addon is built against napi-6 (Node 12.17+), and its only runtime deps are fs-extra (>=14.14) and two packages declaring no engines. Its >=18 dep, pkg-dir, is postinstall-only. Verified reading and validating a signed asset on 16.20.2 with results identical to 22.",
+  "engines": {
+    "node": ">=16"
+  },
+  "bin": {
+    "c2pa-disclosure": "bin/c2pa-disclosure.js"
+  },
+  "//main": "The Amplience processing-job runner reads this field to find the entry point, so it must be the CLI, not a library module.",
+  "main": "bin/c2pa-disclosure.js",
+  "files": [
+    "bin",
+    "lib",
+    "scripts"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "setup": "npm install && npm run fix-binary",
+    "fix-binary": "node scripts/fix-c2pa-binary.js",
+    "start": "node bin/c2pa-disclosure.js"
+  },
+  "keywords": [
+    "c2pa",
+    "content-credentials",
+    "provenance",
+    "eu-ai-act",
+    "amplience",
+    "dam"
+  ],
+  "dependencies": {
+    "@contentauth/c2pa-node": "^0.9.1",
+    "axios": "^1.13.2",
+    "p-limit": "^3.1.0"
+  }
+}

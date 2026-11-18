@@ -1,0 +1,19 @@
+node_modules/
+npm-debug.log*
+
+# Never commit credentials — this tool takes everything as CLI arguments,
+# so a .env here would only ever be a local convenience and a leak risk.
+.env
+.env.*
+*.pem.key
+*-private*
+
+# Run output
+*.jsonl
+*.csv
+/tmp/
+.DS_Store
+
+# Local-only notes
+/reference/
+/CLAUDE.local.md
